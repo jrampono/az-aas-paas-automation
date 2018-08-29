@@ -4,7 +4,7 @@
 ## General Flow of Function Logic
 This function will perform the following actions:\
 a) Attempt connection to Azure SQL Server: This attempt is expected to fail as the function IP address will not be in the SQL server whitelist.\
-b) Retrieve Function IP address from SQL Serevr connection error message.\
+b) Retrieve Function IP address from SQL Server connection error message.\
 c) Whitelist Function IP\
 d) Create a new Login and User within the Azure SQL Server. This login will be used by Azure Analysis Services to connect during cube processing\
 e) Connect to Azure Analysis services and update the datasource's connection string with the new username and password.\
@@ -14,6 +14,11 @@ h) Whitelist Azure Analysis Servcies IP.\
 i) Process Cube.\
 j) Remove Analysis Services User and Login from SQL Server.\
 j) Remove entries from SQL Server Firewall.\
+
+## Additional Considerations / Potential Enhancements
+- Move from Service Principal to MSI to update datasource within Azure Analysis Services database. This is currently set to use the Service Principal but it may be possible to move this to the MSI. \
+- Add logic to auto-whitelist the Function App IP in the Azure Analysis Services instance. Currently function applies auto-white-listing functionalty to the Azure SQL Server instance but not the Azure Analysis Services instance.\
+ 
 
 ## Instructions
 These instructions assume that you already have an existing Azure Function App Created. 

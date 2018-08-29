@@ -3,17 +3,17 @@
 
 ## General Flow of Function Logic
 This function will perform the following actions:
-- Attempt connection to Azure SQL Server. This attempt is expected to fail as the function IP address will not be in the SQL server whitelist.
-- Retrieve Function IP address from SQL Server connection error message.
-- Whitelist Function IP
-- Create a new Login and User within the Azure SQL Server. This login will be used by Azure Analysis Services to connect during cube processing
-- Connect to Azure Analysis services and update the datasource's connection string with the new username and password.
-- Attempt to process cube. This attempt is expected to fail as the Analysis Servcies IP address is not whitelisted in the Azure SQL server's firewall. 
-- Retrieve Azure Analysis Services IP address from cube refresh error message.
-- Whitelist Azure Analysis Servcies IP.
-- Process Cube.
-- Remove Analysis Services User and Login from SQL Server.
-- Remove entries from SQL Server Firewall.
+1.  Attempt connection to Azure SQL Server. This attempt is expected to fail as the function IP address will not be in the SQL server whitelist.
+1. Retrieve Function IP address from SQL Server connection error message.
+1. Whitelist Function IP
+1. Create a new Login and User within the Azure SQL Server. This login will be used by Azure Analysis Services to connect during cube processing
+1. Connect to Azure Analysis services and update the datasource's connection string with the new username and password.
+1. Attempt to process cube. This attempt is expected to fail as the Analysis Servcies IP address is not whitelisted in the Azure SQL server's firewall. 
+1. Retrieve Azure Analysis Services IP address from cube refresh error message.
+1. Whitelist Azure Analysis Servcies IP.
+1. Process Cube.
+1. Remove Analysis Services User and Login from SQL Server.
+1. Remove entries from SQL Server Firewall.
 
 ## Additional Considerations / Potential Enhancements
 - Move from Service Principal to MSI to update datasource within Azure Analysis Services database. This is currently set to use the Service Principal but it may be possible to move this to the MSI. 
@@ -31,7 +31,8 @@ You will need to create the following application settings in the function app (
 
 ```json
 {
-"AASConnectionString": "Provider=MSOLAP;Data Source=asazure://{your azure analysis services region}.asazure.windows.net/{your Azure analysis services servername};Password=/*PW*/;Persist Security Info=True;Impersonation Level=Impersonate",
+"AASRegion": "{Region in which your Azure Analysis Services Server is deployed}",
+"AASServerName": "{Name of your Azure Analysis Services Instance}",
 "ApplicationId": "{This is the Application Id of service principal}",
 "AuthenticationKey": "{This is the Authentication Key used by your service principal}",
 "MsiId": "{This is the pincipalid associated with your Azure Function's MSI}",

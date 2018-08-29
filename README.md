@@ -18,7 +18,7 @@ This function will perform the following actions:
 ## Additional Considerations / Potential Enhancements
 - Move from Service Principal to MSI to update datasource within Azure Analysis Services database. This is currently set to use the Service Principal but it may be possible to move this to the MSI. 
 - Add logic to auto-whitelist the Function App IP in the Azure Analysis Services instance. Currently function applies auto-white-listing functionalty to the Azure SQL Server instance but not the Azure Analysis Services instance.
- 
+- Change SQL Server P/W reset function to account for default Azure SQL password complexity requirements. At the moment the code will occassionally fail due to password complexity constraints.
 
 ## Instructions
 These instructions assume that you already have an existing Azure Function App Created. 

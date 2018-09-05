@@ -33,7 +33,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
                 //Get Access Token for Database REST API operations
                 string SQLAccessToken = Helpers.GetAzureRestApiToken("https://database.windows.net/", Helpers.GlobalConfigs.UseMSIForSQL);
                 //Get Access Token for OLAP REST API operations
-                string OLAPAccessToken = Helpers.GetAzureRestApiToken("https://australiasoutheast.asazure.windows.net/", Helpers.GlobalConfigs.UseMSIForOLAP);
+                string OLAPAccessToken = Helpers.GetAzureRestApiToken(string.Format("https://{0}.asazure.windows.net/", Helpers.GlobalConfigs.AASRegion), Helpers.GlobalConfigs.UseMSIForOLAP);
 
               
                 //Get MSI for C# API operations

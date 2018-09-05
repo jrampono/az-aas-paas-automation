@@ -20,7 +20,7 @@ using System.Text.RegularExpressions;
 using PasswordUtility.PasswordGenerator;
 
 
-
+//Remeber to change if you change your function trigger
 public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log)
   //Publish Code Bellow this point
         {
@@ -84,13 +84,16 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
                     CU.RunCleanUpActions(log);
 
                 }
-          
+                
+                //Remeber to change if you change your function trigger
                 return req.CreateResponse(HttpStatusCode.OK, "Success");
 
             }
             catch (System.Exception e)
             {
                 log.Error("Function Failed" + Newtonsoft.Json.JsonConvert.SerializeObject(e).ToString());
+              
+                //Remeber to change if you change your function trigger
                 return req.CreateResponse(HttpStatusCode.BadRequest, e);
             }
 
